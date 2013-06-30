@@ -277,6 +277,14 @@ setMethod("toJSON", "list",
                  paste(sprintf("[%s", collapse), paste(els, collapse = sprintf(",%s", collapse)), sprintf("%s]", collapse))
            })
 
+setMethod("toJSON", "data.frame",
+           function(x, container = isContainer(x, asIs, .level), collapse = "\n", ..., .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA) {
+             # Data frame columns should always be treated as containers
+             toJSON(lapply(as.list(x), function(col) {
+               I(col)
+             }), container = container, collapse = collapse, ..., .level = .level, .withNames = .withNames, .na = .na, .escapeEscapes = .escapeEscapes, pretty = pretty, asIs = asIs)
+           })
+
 
 jsonPretty =
 function(txt)
