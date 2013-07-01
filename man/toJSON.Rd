@@ -16,6 +16,8 @@
 \alias{toJSON,factor-method}
 \alias{toJSON,AsIs-method}
 \alias{toJSON,environment-method}
+\alias{toJSON,Date-method}
+\alias{toJSON,POSIXt-method}
 
 
 \alias{emptyNamedList}

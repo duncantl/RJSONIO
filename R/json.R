@@ -296,3 +296,16 @@ setMethod("toJSON", "environment",
       toJSON(as.list(x), container, collapse, .level = .level, .withNames = .withNames, .escapeEscapes = .escapeEscapes, asIs = asIs)
            })
 
+setMethod("toJSON", "Date",
+           function(x, container =  isContainer(x, asIs, .level),
+                    collapse = "\n", ..., .level = 1L,
+                    .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", pretty = FALSE, asIs = NA) {
+             toJSON(as.character(x), container, collapse, ..., .level = .level, .withNames = .withNames, .na = .na, pretty = pretty, asIs = asIs)
+           })
+
+setMethod("toJSON", "POSIXt",
+           function(x, container =  isContainer(x, asIs, .level),
+                    collapse = "\n", ..., .level = 1L,
+                    .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", pretty = FALSE, asIs = NA) {
+             toJSON(sub("(\\d{2})(\\d{2})$", "\\1:\\2", format(x, "%Y-%m-%dT%H:%M:%OS6%z")), container, collapse, ..., .level = .level, .withNames = .withNames, .na = .na, pretty = pretty, asIs = asIs)
+           })
