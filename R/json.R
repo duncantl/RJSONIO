@@ -278,6 +278,27 @@ setMethod("toJSON", "list",
            })
 
 
+setMethod("toJSON", "data.frame",
+           function(x, container = isContainer(x, asIs, .level), collapse = "\n", ..., .level = 1L,
+                    .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null",
+                    .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, byrow = FALSE)
+ {
+  if(byrow) {
+     tmp = lapply(1:nrow(x), `[`)
+     toJSON(tmp, container, collapse, ..., .level = .level, .withNames = .withNames,
+            .na = .na, .escapeEscapes = .escapeEscapes, pretty = pretty, asIs = asIs)
+  } else
+              # Data frame columns should always be treated as containers. From Joe Cheng
+      toJSON(lapply(as.list(x),
+                    function(col) 
+                       I(col)
+                   ),
+              container = container, collapse = collapse, ...,
+              .level = .level, .withNames = .withNames, .na = .na,
+              .escapeEscapes = .escapeEscapes, pretty = pretty, asIs = asIs)
+           })
+
+
 jsonPretty =
 function(txt)
 {
