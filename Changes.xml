@@ -3,6 +3,17 @@
            xmlns:env="http://www.shell.org">
 <omg:pkg>RJSONIO</omg:pkg>
 
+<version num="1.1-0">
+<change>
+Inf in R mapped to Infinity in JSON. This is customizable.
+</change>
+<change>
+Fixed <r:func>dQuote</r:func> to handle empty vectors and not create a vector
+of length 1. This allows <r:func>toJSON</r:func> to work correctly.
+Thanks to Murat Tasan for identifying the  larger problem.
+</change>
+</version>
+
 <version num="0.99-0">
 <change>
 Implemented reading JSON from a connection

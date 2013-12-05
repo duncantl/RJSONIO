@@ -16,6 +16,9 @@
 \alias{toJSON,factor-method}
 \alias{toJSON,AsIs-method}
 \alias{toJSON,environment-method}
+\alias{toJSON,data.frame-method}
+\alias{toJSON,array-method}
+\alias{toJSON,function-method}
 
 
 \alias{emptyNamedList}
@@ -42,7 +45,7 @@
 toJSON(x, container = isContainer(x, asIs, .level), 
         collapse = "\n", ..., .level = 1L,
          .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null",
-         .escapeEscapes = TRUE, pretty = FALSE, asIs = NA)
+         .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -92,7 +95,8 @@ toJSON(x, container = isContainer(x, asIs, .level),
    (i.e. not the top level of the JSON content).  This avoids having
    to explicitly mark sub-elements in an R object as being of class
    \code{AsIs}.
-  }
+ }
+  \item{.inf}{how to represent infinity in JSON. This should be a string.}
 }
 
 \value{
@@ -199,6 +203,17 @@ toJSON(x, container = isContainer(x, asIs, .level),
   cat(toJSON(list(a = c(x = 1), b = 2L, c = TRUE,
                   d = list(1, 3),
                   e = "abc"), asIs = FALSE, pretty = TRUE))
+
+
+   # data frame by row as arrays
+  twoRows = data.frame(a = 1:2, b = as.numeric(1:2))
+  j = toJSON(twoRows, byrow = TRUE)
+  r = data.frame(do.call(rbind, fromJSON(j)))
+
+   # here we keep the names of the columns on each row
+   # which allows us to round-trip the object back to R
+  j = toJSON(twoRows, byrow = TRUE, colNames = TRUE)
+  r = data.frame(do.call(rbind, fromJSON(j)))
 }
 
 \keyword{IO}

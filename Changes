@@ -1,5 +1,10 @@
 RJSONIO
 
+Version 1.1-0
+
+  *  Added toJSON() method for data.frame that allows output by row and also 
+     handles the cases where the number of rows is 1. Fix from Joe Cheng.
+
 Version 1.0-4
 
   *  Updates for toJSON() for handling array, table and function objects.
