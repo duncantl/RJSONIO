@@ -173,8 +173,8 @@ setMethod("toJSON", "numeric",
               
              if(any(nas <- is.na(x)))
                  tmp[nas] = .na
-             if(any(inf <- is.infinite(x)))
-                 tmp[inf] = .inf
+             if(any(inf <- is.infinite(x))) 
+                 tmp[inf] = sprintf(" %s%s", ifelse(x[inf] < 0, "-", ""), .inf)
              
              if(container) {
                 if(.withNames)
