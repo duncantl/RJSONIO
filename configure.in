@@ -38,7 +38,7 @@ echo "USE_LOCAL = \"$USE_LOCAL\""
 
 
 if test -n "$USE_LOCAL" &&  ! test "$USE_LOCAL" = "" && ! test "$USE_LOCAL" = "yes"  && test -n "$LIBJSON_PREFIX" ; then
-  LIBJSON_CFLAGS=-I${LIBJSON_PREFIX}/include
+  LIBJSON_CFLAGS="-I${LIBJSON_PREFIX}/include -I."   # -I${LIBJSON_PREFIX}/Source
   LIBJSON_LIBS="-L${LIBJSON_PREFIX}/lib -ljson"
   CPP_FILES=""
 else
@@ -63,9 +63,10 @@ else
    echo "Minor Version: $MINOR_VERSION"
    echo "Using local libjson code. Copying files from ${LIBJSON_SRC}"
    echo "`pwd`"
-   CPP_FILES=`(cd ${LIBJSON_SRC}; ls *.cpp)`
+   CPP_FILES="`(cd ${LIBJSON_SRC}; ls *.cpp)`"
    echo "$CPP_FILES"
    cp ${LIBJSON_SRC}/*.cpp src/
+   cp src/libjson/JSONOptions.h src/
 fi
 
 AC_SUBST(CPP_FILES)
