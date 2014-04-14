@@ -262,7 +262,9 @@ makeVector(SEXP ans, int len, int type, SEXP nullValue)
 	PROTECT(tmp = NEW_CHARACTER(len)); 
 	for(ctr = 0; ctr < len; ctr++) {
 	    SEXP el = VECTOR_ELT(ans, ctr);
-	    if(TYPEOF(el) == STRSXP)
+	    if(el == R_NilValue)
+		SET_STRING_ELT(tmp, ctr, NA_STRING);
+	    else if(TYPEOF(el) == STRSXP)
 		SET_STRING_ELT(tmp, ctr, STRING_ELT(el, 0));
 	    else if(TYPEOF(el) == LGLSXP) {
 		SET_STRING_ELT(tmp, ctr, LOGICAL(el)[0] == NA_INTEGER ? NA_STRING : mkChar(LOGICAL(el)[0] ? "TRUE" : "FALSE"));

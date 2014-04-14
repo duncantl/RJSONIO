@@ -1,0 +1,16 @@
+Modified 
+ in Source/
+   JSONChildren.h  - use namespace std;   - see BDR's note.
+   libjson.cpp - change ../../libjson.h  to "libjson/libjson.h"
+
+   JSONStats.h  - change "../../JSONOptions.h" to "JSONOptions.h". This may not be necessary after changes to configure.in and copying files to src/
+
+Then copy to the R package source:
+
+cd src/libjson
+cp -f ~/Downloads/libjson/_internal/Source/[A-Za-z]* Source
+cp -f ~/Downloads/libjson/_internal/Source/JSONDefs/* Source/JSONDefs
+
+configure copies src/libjson/JSONOptions.h to src/ now.
+
+
