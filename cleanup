@@ -18,4 +18,7 @@ libjson.cpp"
 if test -n "$CPP" ; then 
   echo "Removing the CPP files copied from libjson into src: $CPP"
   (cd src ; rm $CPP)
+  if test -e src/JSONOptions.h ; then 
+      rm src/JSONOptions.h
+  fi
 fi
