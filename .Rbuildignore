@@ -12,4 +12,17 @@ purdy.R
 roebuck.R
 json-asIS-withlevel
 
-
+bigfile.R
+Changes.xml
+intName.R
+stream.R
+streaming.R
+fail.R
+tests.R
+testStream.R
+dataframe.R
+leak.R
+utf.*
+jsonText.rda
+Dependencies.*
+foo.html
