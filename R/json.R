@@ -334,3 +334,11 @@ setMethod("toJSON", "environment",
       toJSON(as.list(x), container, collapse, .level = .level, .withNames = .withNames, .escapeEscapes = .escapeEscapes, asIs = asIs, .inf = .inf)
            })
 
+
+setMethod("toJSON", "function",
+           function(x, container = isContainer(x, asIs, .level), collapse = "\n  ", ...,
+                     .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null",
+                      .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity") {
+             warning("converting an R function to JSON as null. To change this, define a method for toJSON() for a 'function' object.")
+             "null"
+           })
