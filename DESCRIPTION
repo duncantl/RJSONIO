@@ -17,7 +17,7 @@ Note: The C code comes from www.json.org and is licensed under essentially the B
       The libjson code is on sourceforge.net, but does not yet have a license.     
 Note:  See http://www.json.org/JSON_checker/test.zip for tests.
    We now use code from the libjson project (http://libjson.sourceforge.net).
-License: BSD
+License: BSD_3_clause + file LICENSE
 Depends: methods 
 Author: Duncan Temple Lang
 Maintainer: Duncan Temple Lang <duncan@r-project.org>

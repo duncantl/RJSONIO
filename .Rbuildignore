@@ -11,5 +11,6 @@ purdy.R
 .*.log
 roebuck.R
 json-asIS-withlevel
+src/Makevars$
 
 
