@@ -3,6 +3,15 @@
            xmlns:env="http://www.shell.org">
 <omg:pkg>RJSONIO</omg:pkg>
 
+<version num="1.2-0">
+<change>
+Included updated code from libjson which is used if one does not have libjson installed.
+</change>
+<change>
+Method for toJSON() for function.
+</change>
+</version>
+
 <version num="1.1-0">
 <change>
 Inf in R mapped to Infinity in JSON. This is customizable.
@@ -12,7 +21,58 @@ Fixed <r:func>dQuote</r:func> to handle empty vectors and not create a vector
 of length 1. This allows <r:func>toJSON</r:func> to work correctly.
 Thanks to Murat Tasan for identifying the  larger problem.
 </change>
+<change>
+Added toJSON() method for data.frame that allows output by row and also 
+handles the cases where the number of rows is 1. Fix from Joe Cheng.
+</change>
 </version>
+
+<version num="1.0-4">
+<change> Updates for toJSON() for handling array, table and function objects.
+These don't fail (with infinite recursion) but may not be what is desired
+for a particular application.   Identified by Stavros Macrakis
+</change>
+<change>
+Added a warning about +/- Inf values in a vector.
+</change>
+</version>
+
+
+<version num="1.0-3">
+<change>Removed the limit on the size of the string that was on by default in libjson (via JSON_SECURITY_MAX_STRING_LENGTH in JSONOptions.h).
+Issue identified by Adrian Alexa.
+</change>
+</version>
+
+<version num="1.1-0">
+<change>
+Escape \b \r and \f when exporting strings from R to JSON. Thanks to Joe Cheng.
+</change>
+<change>
+Fix use of snprintf in libjson code to remove the std:: qualifier.
+</change>
+<change>
+</change>
+</version>
+
+<version num="1.0-1">
+<change>Fixes to the libjson code to make it compile on different machines.</change>
+</version>
+
+<version num="1.0-0">
+<change>toJSON() for S4 objects adds , separating slots that was omitted.</change>
+<change>Force the values of container and .withNames in the toJSON() generic to fix a bug
+that caused vectors of length 1 with names to appear as scalars and so lose the names.
+Thanks to Igor Elbert.
+</change>
+<change>Added stringFun as parameter in fromJSON() to allow processing of each string value as it is 
+encountered.  This can be used to convert strings to arbitrary R objects.
+</change>
+<change>Initial implementation of parsing streaming data from a file or connection.
+Unreliable at present.</change>
+<change>Changes to libjson source for missing arguments in C++ macros.</change>
+</version>
+
 
 <version num="0.99-0">
 <change>
@@ -20,6 +80,14 @@ Implemented reading JSON from a connection
 using a "pull" mechanism which reads from the connection
 as more content is needed by the parser. This avoids
 having all the content in memory before parsing.
+</change>
+<change>
+Incorporated libjson_7.6.0 which has support for escaped content (e.g. \x).
+</change>
+</version>
+
+<version num="0.98-1">
+<change>Compilation issues fixed for new libjson code on Solaris and Windows. Thanks to Brian Ripley for Solaris corrections.
 </change>
 </version>
 

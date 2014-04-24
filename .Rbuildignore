@@ -13,7 +13,6 @@ roebuck.R
 json-asIS-withlevel
 src/Makevars$
 
-bigfile.R
 Changes.xml
 intName.R
 streaming.R
@@ -25,3 +24,7 @@ leak.R
 utf.*
 jsonText.rda
 foo.html
+Web
+Web
+bigFile.R
+experiments
