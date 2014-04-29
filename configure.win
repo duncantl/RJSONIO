@@ -1,1 +1,3 @@
 cp src/libjson/Source/*.cpp src/
+cp src/libjson/JSONOptions.h src/
+
