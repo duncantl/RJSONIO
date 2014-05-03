@@ -2,6 +2,14 @@
 RJSONIO
 
 
+Version 1.2-1
+
+  *  Fix for toJSON(character(0)) in a hierarchy. Found by Kevin Ushey.
+
+  *  Method for toJSON() for function.
+
+
+
 Version 1.2-0
 
   *  Included updated code from libjson which is used if one does not have libjson installed.

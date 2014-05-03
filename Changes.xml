@@ -3,6 +3,16 @@
            xmlns:env="http://www.shell.org">
 <omg:pkg>RJSONIO</omg:pkg>
 
+<version num="1.2-1">
+<change>
+Fix for <r:expr>toJSON(character(0))</r:expr> in a hierarchy.
+Found by Kevin Ushey.
+</change>
+<change>
+Method for toJSON() for function.
+</change>
+</version>
+
 <version num="1.2-0">
 <change>
 Included updated code from libjson which is used if one does not have libjson installed.
