@@ -26,3 +26,6 @@ utf.*
 jsonText.rda
 Dependencies.*
 foo.html
+Web
+bigFile.R
+stream.R
