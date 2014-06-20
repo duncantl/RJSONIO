@@ -5,7 +5,7 @@ if(FALSE) {
 } else {
 #  con = file("inst/sampleData/array2.json", "r")
   f = "inst/sampleData/web.json"
-#  f = "inst/sampleData/widget.json"  
+# f = "inst/sampleData/widget.json"  
   
   con = file(f, "r")  
 }

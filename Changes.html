@@ -9,6 +9,146 @@
 </center></h1>
 <code class="omgpkg"><a href="http://www.omegahat.org/RJSONIO">RJSONIO</a></code>
 
+<h2>Version 1.2-1</h2>
+<dl>
+<dt><li>
+Fix for <code class="Sexpression">toJSON(character(0))</code> in a hierarchy.
+Found by Kevin Ushey.
+</li></dt>
+<dd></dd>
+<dt><li>
+Method for toJSON() for function.
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.2-0</h2>
+<dl>
+<dt><li>
+Included updated code from libjson which is used if one does not have libjson installed.
+</li></dt>
+<dd></dd>
+<dt><li>
+Method for toJSON() for function.
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.1-0</h2>
+<dl>
+<dt><li>
+Inf in R mapped to Infinity in JSON. This is customizable.
+</li></dt>
+<dd></dd>
+<dt><li>
+Fixed <a href="http://www.omegahat.org/RJSONIO/docs/html/dQuote.html"><code class="rfunc">dQuote()</code></a> to handle empty vectors and not create a vector
+of length 1. This allows <a href="http://www.omegahat.org/RJSONIO/docs/html/toJSON.html"><code class="rfunc">toJSON()</code></a> to work correctly.
+Thanks to Murat Tasan for identifying the  larger problem.
+</li></dt>
+<dd></dd>
+<dt><li>
+Added toJSON() method for data.frame that allows output by row and also 
+handles the cases where the number of rows is 1. Fix from Joe Cheng.
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.0-4</h2>
+<dl>
+<dt><li> Updates for toJSON() for handling array, table and function objects.
+These don't fail (with infinite recursion) but may not be what is desired
+for a particular application.   Identified by Stavros Macrakis
+</li></dt>
+<dd></dd>
+<dt><li>
+Added a warning about +/- Inf values in a vector.
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+
+<h2>Version 1.0-3</h2>
+<dl>
+<dt><li>Removed the limit on the size of the string that was on by default in libjson (via JSON_SECURITY_MAX_STRING_LENGTH in JSONOptions.h).
+Issue identified by Adrian Alexa.
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.1-0</h2>
+<dl>
+<dt><li>
+Escape \b \r and \f when exporting strings from R to JSON. Thanks to Joe Cheng.
+</li></dt>
+<dd></dd>
+<dt><li>
+Fix use of snprintf in libjson code to remove the std:: qualifier.
+</li></dt>
+<dd></dd>
+<dt><li>
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.0-1</h2>
+<dl>
+<dt><li>Fixes to the libjson code to make it compile on different machines.</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.0-0</h2>
+<dl>
+<dt><li>toJSON() for S4 objects adds , separating slots that was omitted.</li></dt>
+<dd></dd>
+<dt><li>Force the values of container and .withNames in the toJSON() generic to fix a bug
+that caused vectors of length 1 with names to appear as scalars and so lose the names.
+Thanks to Igor Elbert.
+</li></dt>
+<dd></dd>
+<dt><li>Added stringFun as parameter in fromJSON() to allow processing of each string value as it is 
+encountered.  This can be used to convert strings to arbitrary R objects.
+</li></dt>
+<dd></dd>
+<dt><li>Initial implementation of parsing streaming data from a file or connection.
+Unreliable at present.</li></dt>
+<dd></dd>
+<dt><li>Changes to libjson source for missing arguments in C++ macros.</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+
+<h2>Version 0.99-0</h2>
+<dl>
+<dt><li>
+Implemented reading JSON from a connection
+using a "pull" mechanism which reads from the connection
+as more content is needed by the parser. This avoids
+having all the content in memory before parsing.
+</li></dt>
+<dd></dd>
+<dt><li>
+Incorporated libjson_7.6.0 which has support for escaped content (e.g. \x).
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 0.98-1</h2>
+<dl>
+<dt><li>Compilation issues fixed for new libjson code on Solaris and Windows. Thanks to Brian Ripley for Solaris corrections.
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
 <h2>Version 0.98-0</h2>
 <dl>
 <dt><li>

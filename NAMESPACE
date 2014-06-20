@@ -1,4 +1,5 @@
 useDynLib(RJSONIO)
+import("methods")
 
 export(toJSON)
 exportMethods(toJSON)

@@ -192,7 +192,7 @@
  *  JSON_READ_PRIORITY turns on libjson's reading capabilties.  Changing the value of the reader
  *  changes how libjson compiles, and how fast it will go when writing
  */
-#define JSON_READ_PRIORITY HIGH
+//#define JSON_READ_PRIORITY HIGH
 
 
 /*
@@ -253,7 +253,7 @@
 /*
  *  JSON_VALIDATE turns on validation features of libjson.
  */
-#define JSON_VALIDATE
+//#define JSON_VALIDATE
 
 
 /*

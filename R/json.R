@@ -193,7 +193,7 @@ setMethod("toJSON", "character",
 # Don't do this: !             tmp = gsub("\\\n", "\\\\n", x)
 
 #             if(length(x) == 0)    return("[ ]")
-             
+
              tmp = x
 
              tmp = gsub('(\\\\)', '\\1\\1', tmp)
@@ -217,8 +217,10 @@ setMethod("toJSON", "character",
                          sprintf("%s}", collapse))
                 else               
                    paste("[", paste(tmp, collapse = ", "), "]")
-             } else
-                tmp
+             } else if(length(x) == 0)
+                      "[ ]"
+               else
+                      tmp
            })
 
 
