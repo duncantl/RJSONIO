@@ -117,7 +117,7 @@
  *  your json into a stream, which will automatically hit a callback when full nodes are
  *  completed
  */
-#define JSON_STREAM
+// #define JSON_STREAM
 
 
 /*

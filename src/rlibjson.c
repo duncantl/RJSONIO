@@ -14,6 +14,13 @@ R_json_parse(SEXP str)
     return(R_MakeExternalPtr(node, Rf_install("JSONNODE"), R_NilValue));
 }
 
+void
+jsonErrorHandler(const json_char *foo)
+{
+    PROBLEM  "json error handler: %s", foo
+      ERROR;
+}
+
 SEXP
 R_fromJSON(SEXP r_str, SEXP simplify, SEXP nullValue, SEXP simplifyWithNames, SEXP encoding,
             SEXP r_stringFun, SEXP r_str_type)
@@ -36,6 +43,11 @@ R_fromJSON(SEXP r_str, SEXP simplify, SEXP nullValue, SEXP simplifyWithNames, SE
     } else 
 	r_stringFun = NULL;
 
+#if 0
+    register_debug_callback(jsonErrorHandler);
+#else
+#pragma message("activate the debug_callback")
+#endif
     node = json_parse(str);
     ans = processJSONNode(node, json_type(node), INTEGER(simplify)[0], nullValue, LOGICAL(simplifyWithNames)[0],
  			  INTEGER(encoding)[0], r_stringFun, str_fun_type);

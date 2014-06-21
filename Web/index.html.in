@@ -42,15 +42,14 @@ string, key, start or end of an array or object) is found
 in the JSON content.
 </p>
 
-<p> This package is motivated by the need to export R objects for use
+<p> This package was motivated by the need to export R objects for use
 in creating dynamic graphics for the Web via SVG and Flash/FLEX.
-Initially, we used Alex Couture-Beil's <a
+Since then, JSON has become a prominent format with many uses.
+Alex Couture-Beil's <a
 href="http://cran.r-project.org/web/packages/rjson/index.html">rjson</a>
-package.  However, that does not use S4/S3 methods and so is not
-readily extensible, but still useful. Unfortunately, it does not used
-vectorized operations and so is too slow for non-trivial
-data. Similarly, for reading JSON data into R, it is somewhat slow and
-so does not scale to large data, should this be an issue.
+package is another mechanism in R for reading and writing JSON
+content.  However, that does not use S4/S3 methods and so is not
+readily extensible, but still useful.
 </p>
 
 <h2>Documentation</h2>
@@ -64,8 +63,8 @@ so does not scale to large data, should this be an issue.
 
 <hr>
 <address><a href="http://www.stat.ucdavis.edu/~duncan">Duncan Temple Lang</a>
-<a href=mailto:duncan@wald.ucdavis.edu>&lt;duncan@wald.ucdavis.edu&gt;</a></address>
+<a href=mailto:duncan@wald.ucdavis.edu>&lt;duncan@r-project.org&gt;</a></address>
 <!-- hhmts start -->
-Last modified: Sun Aug  9 11:53:44 PDT 2009
+Last modified: Mon May 19 09:26:38 PDT 2014
 <!-- hhmts end -->
 </body> </html>

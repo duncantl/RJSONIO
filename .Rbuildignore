@@ -12,7 +12,6 @@ purdy.R
 roebuck.R
 json-asIS-withlevel
 src/Makevars$
-
 Changes.xml
 intName.R
 streaming.R
@@ -21,11 +20,9 @@ tests.R
 testStream.R
 dataframe.R
 leak.R
-utf.*
 jsonText.rda
 foo.html
 Web
 bigFile.R
-stream.R
 experiments
-
+utfTest.*
