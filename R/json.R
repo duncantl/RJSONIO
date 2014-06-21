@@ -264,7 +264,7 @@ setMethod("toJSON", "matrix",
 setMethod("toJSON", "list",
            function(x, container = isContainer(x, asIs, .level), collapse = "\n", ..., .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity") {
                 # Degenerate case.
-browser()
+
              if(length(x) == 0) {
                           # x = structure(list(), names = character()) gives {}
                 return(if(is.null(names(x))) "[]" else "{}")
