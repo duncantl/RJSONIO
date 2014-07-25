@@ -161,7 +161,7 @@ setMethod("toJSON", "logical",
            })
 
 setMethod("toJSON", "numeric",
-           function(x, container =  isContainer(x, asIs, .level), collapse = "\n", digits = 5, ...,
+           function(x, container =  isContainer(x, asIs, .level), collapse = "\n", digits = getOption("digits", 5), ...,
                       .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0,
                         .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA,
                          .inf = " Infinity") {
@@ -189,7 +189,8 @@ setMethod("toJSON", "numeric",
 
 
 setMethod("toJSON", "character",
-           function(x, container =  isContainer(x, asIs, .level), collapse = "\n", digits = 5, ..., .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity") {
+           function(x, container =  isContainer(x, asIs, .level), collapse = "\n", digits =  getOption("digits", 5), ...,
+                    .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity") {
 # Don't do this: !             tmp = gsub("\\\n", "\\\\n", x)
 
 #             if(length(x) == 0)    return("[ ]")
