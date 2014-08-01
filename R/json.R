@@ -71,7 +71,7 @@ setMethod("toJSON", "ANY",
              if(isS4(x)) {
                paste("{", paste(dQuote(slotNames(x)), sapply(slotNames(x),
                                                               function(id)
-                                                                 toJSON(slot(x, id), ..., .level = .level + 1L,
+                                                                 toJSON(slot(x, id), ..., .level = .level + 1L, collapse = collapse,
                                                                         .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs,
                                                                          .inf = .inf)),
                                  sep = ": ", collapse = ","),
@@ -79,7 +79,7 @@ setMethod("toJSON", "ANY",
              } else {
 #cat(class(x), "\n")
                if(is.language(x)) {
-                  return(toJSON(as.list(x), asIs = asIs, .inf = .inf, .na = .na))
+                  return(toJSON(as.list(x), asIs = asIs, .inf = .inf, .na = .na, collapse = collapse))
                   stop("No method for converting ", class(x), " to JSON")
                }
 
@@ -271,7 +271,7 @@ setMethod("toJSON", "list",
                 return(if(is.null(names(x))) "[]" else "{}")
              }
 
-             els = lapply(x, toJSON, ..., .level = .level + 1L, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, .inf = .inf)
+             els = lapply(x, toJSON, ..., .level = .level + 1L, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, .inf = .inf, collapse = collapse)
 
              if(all(sapply(els, is.name)))
                names(els) = NULL
