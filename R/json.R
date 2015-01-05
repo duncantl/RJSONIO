@@ -169,7 +169,7 @@ setMethod("toJSON", "numeric",
             if(any(is.infinite(x)))
               warning("non-fininte values in numeric vector may not be approriately represented in JSON")             
 
-             tmp = formatC(x, digits = digits)
+             tmp = formatC(x, digits = digits, width = 1)
               
              if(any(nas <- is.na(x)))
                  tmp[nas] = .na
