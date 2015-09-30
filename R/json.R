@@ -71,15 +71,15 @@ setMethod("toJSON", "ANY",
              if(isS4(x)) {
                paste("{", paste(dQuote(slotNames(x)), sapply(slotNames(x),
                                                               function(id)
-                                                                 toJSON(slot(x, id), ..., .level = .level + 1L,
-                                                                        .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs,
+                                                                 toJSON(slot(x, id), ..., .level = .level + 1L, collapse = collapse,
+                                                                        .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, pretty = pretty,
                                                                          .inf = .inf)),
                                  sep = ": ", collapse = ","),
                      "}", collapse = collapse)
              } else {
 #cat(class(x), "\n")
                if(is.language(x)) {
-                  return(toJSON(as.list(x), asIs = asIs, .inf = .inf, .na = .na))
+                  return(toJSON(as.list(x), asIs = asIs, .inf = .inf, .na = .na, pretty = pretty, collapse = collapse, .escapeEscapes = .escapeEscapes))
                   stop("No method for converting ", class(x), " to JSON")
                }
 
@@ -140,7 +140,7 @@ setMethod("toJSON", "factor",
                      collapse = "\n", ..., .level = 1L,
                      .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", pretty = FALSE, asIs = NA, .inf = " Infinity") {
 
-             toJSON(as.character(x), container, collapse, ..., .level = .level, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs)
+             toJSON(as.character(x), container, collapse, ..., .level = .level, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, pretty = pretty, .inf = .inf)
            })
 
 setMethod("toJSON", "logical",
@@ -242,7 +242,7 @@ setMethod("toJSON", "name",
 
 setOldClass("AsIs")
 setMethod("toJSON", "AsIs",
-           function(x, container =  isContainer(x, asIs, .level), collapse = "\n", ..., .level=1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", .escapeEscapes = TRUE, asIs = NA, .inf = " Infinity") {
+           function(x, container =  isContainer(x, asIs, .level), collapse = "\n", ..., .level = 1L, .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", .escapeEscapes = TRUE, asIs = NA, .inf = " Infinity") {
               toJSON(structure(x, class = class(x)[-1]), container = TRUE, collapse = collapse, ..., .level = .level + 1L, .withNames = .withNames, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, .inf = .inf)
            })
 
@@ -271,7 +271,7 @@ setMethod("toJSON", "list",
                 return(if(is.null(names(x))) "[]" else "{}")
              }
 
-             els = lapply(x, toJSON, ..., .level = .level + 1L, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, .inf = .inf)
+             els = lapply(x, toJSON, ..., .level = .level + 1L, .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, .inf = .inf, collapse = collapse)
 
              if(all(sapply(els, is.name)))
                names(els) = NULL
@@ -301,7 +301,7 @@ setMethod("toJSON", "data.frame",
                     .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity")
  {
   if(byrow) {
-     tmp = lapply(1:nrow(x), function(i) { row = as.list(x[i, ])
+      tmp = lapply(1:nrow(x), function(i) { row = as.list(x[i, ])
                                            if(colNames)
                                              row                                             
                                            else
