@@ -2,15 +2,15 @@
 RJSONIO
 
 
+Version 1.3-1
+
+  *  Fix for simplify = TRUE and getting the correct element type. Problem identified by Ivan Yevshin
+
+
+
 Version 1.3-0
 
-  *  When toJSON() outputs numeric vectors, it determines the default value of the digits argument 
-     by querying getOption("digits"). This uses a global variable. It should be specified in the call 
-     to the toJSON() function. However, some other packages that use toJSON() do not provide the user 
-     a means to specify digits. So set the options if necessary, but the appropriate way to resolve
-     this is for these other packages to provide a way to specify the digits argument value for toJSON().
-     We shouldn't propogate more digits for data than are appropriate.  If something is measured to 3 digits
-     reporting them to 15 digits is nonsense!
+
 
 Version 1.2-1
 

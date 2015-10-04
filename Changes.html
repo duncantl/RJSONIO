@@ -9,6 +9,20 @@
 </center></h1>
 <code class="omgpkg"><a href="http://www.omegahat.org/RJSONIO">RJSONIO</a></code>
 
+<h2>Version 1.3-1</h2>
+<dl>
+<dt><li>
+Fix for simplify = TRUE and getting the correct element type. Problem identified by Ivan Yevshin
+</li></dt>
+<dd></dd>
+</dl>
+<hr width="50%">
+
+<h2>Version 1.3-0</h2>
+<dl>
+</dl>
+<hr width="50%">
+
 <h2>Version 1.2-1</h2>
 <dl>
 <dt><li>
@@ -192,7 +206,7 @@ the resulting strings. Thanks to Tony Breyal for pointing out the issue.
 <h2>Version 0.95-0</h2>
 <dl>
 <dt><li>
-In <a href="http://www.omegahat.org/RJSONIO/docs/html/fromJSON.html"><code class="rfunc">fromJSON()</code></a>, when <i>nullValue</i> is <b xmlns:s="http://cm.bell-labs.com/stat/S4" xmlns:py="http://www.python.org" xmlns:perl="http://www.perl.org" xmlns:c="http://www.C.org" xmlns:vb="http://www.visualbasic.com" xmlns:omegahat="http://www.omegahat.org" xmlns:bioc="http://www.bioconductor.org" xmlns:java="http://www.java.com" xmlns:sql="http://www.sql.org"><a href="library/base/html/NA.html">NA</a></b> (the logical NA)
+In <a href="http://www.omegahat.org/RJSONIO/docs/html/fromJSON.html"><code class="rfunc">fromJSON()</code></a>, when <i>nullValue</i> is <b xmlns:c="http://www.C.org"><a href="library/base/html/NA.html">NA</a></b> (the logical NA)
 we attempt to simplify vectors with JSON null values.
 </li></dt>
 <dd></dd>
@@ -246,9 +260,9 @@ to preserve new lines and tabs symbolically or not. Thanks to Antonio Piccolboni
 <dl>
 <dt><li>
 Added <i>.na</i> parameter to the <a href="http://www.omegahat.org/RJSONIO/docs/html/toJSON.html"><code class="rfunc">toJSON()</code></a> function and methods
-so that the caller can control how <b xmlns:s="http://cm.bell-labs.com/stat/S4" xmlns:py="http://www.python.org" xmlns:perl="http://www.perl.org" xmlns:c="http://www.C.org" xmlns:vb="http://www.visualbasic.com" xmlns:omegahat="http://www.omegahat.org" xmlns:bioc="http://www.bioconductor.org" xmlns:java="http://www.java.com" xmlns:sql="http://www.sql.org"><a href="library/base/html/NA.html">NA</a></b> values are mapped to JSON.
+so that the caller can control how <b xmlns:c="http://www.C.org"><a href="library/base/html/NA.html">NA</a></b> values are mapped to JSON.
 This defaults to "null" so that the resulting JSON is well-formed.
-However, users should explicitly think  about how <b xmlns:s="http://cm.bell-labs.com/stat/S4" xmlns:py="http://www.python.org" xmlns:perl="http://www.perl.org" xmlns:c="http://www.C.org" xmlns:vb="http://www.visualbasic.com" xmlns:omegahat="http://www.omegahat.org" xmlns:bioc="http://www.bioconductor.org" xmlns:java="http://www.java.com" xmlns:sql="http://www.sql.org"><a href="library/base/html/NA.html">NA</a></b> values 
+However, users should explicitly think  about how <b xmlns:c="http://www.C.org"><a href="library/base/html/NA.html">NA</a></b> values 
 (and Inf and NaN) are mapped to JSON in order to avoid ambiguity and
 faithfully serialize their data in a meaningful manner.
 </li></dt>
@@ -257,7 +271,7 @@ faithfully serialize their data in a meaningful manner.
 Added a <i>nullValue</i> parameter to <a href="http://www.omegahat.org/RJSONIO/docs/html/fromJSON.html"><code class="rfunc">fromJSON()</code></a>
 to allow the caller to provide an R object that will be used
 when we encounter a JSON null value. 
-This can be used for example to map null to <b xmlns:s="http://cm.bell-labs.com/stat/S4" xmlns:py="http://www.python.org" xmlns:perl="http://www.perl.org" xmlns:c="http://www.C.org" xmlns:vb="http://www.visualbasic.com" xmlns:omegahat="http://www.omegahat.org" xmlns:bioc="http://www.bioconductor.org" xmlns:java="http://www.java.com" xmlns:sql="http://www.sql.org"><a href="library/base/html/NA.html">NA</a></b> in R.
+This can be used for example to map null to <b xmlns:c="http://www.C.org"><a href="library/base/html/NA.html">NA</a></b> in R.
 </li></dt>
 <dd></dd>
 <dt><li>
@@ -353,7 +367,7 @@ Correction for toJSON() method for handling of \ in strings so that they round-t
 <dt><li>
 Round-tripping from JSON to R and back behaves a lot more consistently.
 Thanks to Kevin Coombes for the examples/tests.
-Next, we will add functionality to customize serialization of <b xmlns:s="http://cm.bell-labs.com/stat/S4" xmlns:py="http://www.python.org" xmlns:perl="http://www.perl.org" xmlns:c="http://www.C.org" xmlns:vb="http://www.visualbasic.com" xmlns:omegahat="http://www.omegahat.org" xmlns:bioc="http://www.bioconductor.org" xmlns:java="http://www.java.com" xmlns:sql="http://www.sql.org"><a href="library/base/html/NA.html">NA</a></b>.
+Next, we will add functionality to customize serialization of <b xmlns:c="http://www.C.org"><a href="library/base/html/NA.html">NA</a></b>.
 </li></dt>
 <dd></dd>
 <dt><li>

@@ -3,6 +3,15 @@
            xmlns:env="http://www.shell.org">
 <omg:pkg>RJSONIO</omg:pkg>
 
+<version num="1.3-1">
+<change>
+Fix for simplify = TRUE and getting the correct element type. Problem identified by Ivan Yevshin
+</change>
+</version>
+
+<version num="1.3-0">
+</version>
+
 <version num="1.2-1">
 <change>
 Fix for <r:expr>toJSON(character(0))</r:expr> in a hierarchy.
