@@ -159,7 +159,7 @@ function(content, handler = NULL, default.size = 100,
              stringFun = NULL, maxNumLines = -1L, ...)  
 {
   txt = paste(readLines(content, maxNumLines), collapse = "\n")
-#browser()  
+
   fromJSON(I(txt), handler, default.size, depth, allowComments, asText = TRUE, data = data, maxNumLines = maxNumLines,
              simplify = simplify, ..., nullValue = nullValue, simplifyWithNames = simplifyWithNames,
                encoding = encoding, stringFun = stringFun)
