@@ -69,7 +69,7 @@ setMethod("toJSON", "ANY",
                       .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity") {
 
              if(isS4(x)) {
-               paste("{", paste(dQuote(slotNames(x)), sapply(slotNames(x),
+               paste("{", paste(dQuote(escapeQuote(slotNames(x))), sapply(slotNames(x),
                                                               function(id)
                                                                  toJSON(slot(x, id), ..., .level = .level + 1L, collapse = collapse,
                                                                         .na = .na, .escapeEscapes = .escapeEscapes, asIs = asIs, pretty = pretty,
@@ -106,7 +106,7 @@ setMethod("toJSON", "integer",
 
              if(container) {
                 if(.withNames)
-                   paste(sprintf("{%s", collapse), paste(dQuote(names(x)), x, sep = ": ", collapse = sprintf(",%s", collapse)), sprintf("%s}", collapse))
+                   paste(sprintf("{%s", collapse), paste(dQuote(escapeQuote(names(x))), x, sep = ": ", collapse = sprintf(",%s", collapse)), sprintf("%s}", collapse))
                 else
                    paste("[", paste(x, collapse = ", "), "]")
               } else
@@ -127,7 +127,7 @@ setMethod("toJSON", "hexmode",
              
              if(container) {
                 if(.withNames)
-                   paste(sprintf("{%s", collapse), paste(dQuote(names(x)), tmp, sep = ": ", collapse = sprintf(",%s", collapse)), sprintf("%s}", collapse))
+                   paste(sprintf("{%s", collapse), paste(dQuote(escapeQuote(names(x))), tmp, sep = ": ", collapse = sprintf(",%s", collapse)), sprintf("%s}", collapse))
                 else               
                 paste("[", paste(tmp, collapse = ", "), "]")
              } else
@@ -153,7 +153,7 @@ setMethod("toJSON", "logical",
 
              if(container) {
                 if(.withNames)
-                   paste(sprintf("{%s", collapse), paste(dQuote(names(x)), tmp, sep = ": ", collapse = sprintf(",%s", collapse)), sprintf("%s}", collapse))
+                   paste(sprintf("{%s", collapse), paste(dQuote(escapeQuote(names(x))), tmp, sep = ": ", collapse = sprintf(",%s", collapse)), sprintf("%s}", collapse))
                 else               
                    paste("[", paste(tmp, collapse = ", "), "]")
              } else
@@ -166,10 +166,11 @@ setMethod("toJSON", "numeric",
                         .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA,
                          .inf = " Infinity") {
 
+cat("toJSON::numeric", digits, "\n")               
             if(any(is.infinite(x)))
               warning("non-fininte values in numeric vector may not be approriately represented in JSON")             
 
-             tmp = formatC(x, digits = digits)
+             tmp = formatC(x, digits = digits) # , format = "f")
               
              if(any(nas <- is.na(x)))
                  tmp[nas] = .na
@@ -179,7 +180,7 @@ setMethod("toJSON", "numeric",
              if(container) {
                 if(.withNames)
                    paste(sprintf("{%s", collapse),
-                         paste(dQuote(names(x)), tmp, sep = ": ", collapse = sprintf(",%s", collapse)),
+                         paste(dQuote(escapeQuote(names(x))), tmp, sep = ": ", collapse = sprintf(",%s", collapse)),
                          sprintf("%s}", collapse))
                 else
                    paste("[", paste(tmp, collapse = ", "), "]")
@@ -187,6 +188,9 @@ setMethod("toJSON", "numeric",
                tmp
            })
 
+escapeQuote =
+function(x)
+  gsub('"', '\\\\"', x)    
 
 setMethod("toJSON", "character",
            function(x, container =  isContainer(x, asIs, .level), collapse = "\n", digits =  getOption("digits", 5), ...,
@@ -214,7 +218,7 @@ setMethod("toJSON", "character",
              if(container) {
                 if(.withNames)
                    paste(sprintf("{%s", collapse),
-                          paste(dQuote(names(x)), tmp, sep = ": ", collapse = sprintf(",%s", collapse)),
+                          paste(dQuote(escapeQuote(names(x))), tmp, sep = ": ", collapse = sprintf(",%s", collapse)),
                          sprintf("%s}", collapse))
                 else               
                    paste("[", paste(tmp, collapse = ", "), "]")
@@ -257,7 +261,7 @@ setMethod("toJSON", "matrix",
                return(tmp)
 
               if(.withNames)
-                paste("{", paste(dQuote(names(x)), tmp, sep = ": "), "}")                
+                paste("{", paste(dQuote(escapeQuote(names(x))), tmp, sep = ": "), "}")                
               else
                 paste("[", tmp, "]")
            })
@@ -287,7 +291,7 @@ setMethod("toJSON", "list",
              
              if(.withNames)
                 paste(sprintf("{%s", collapse),
-                      paste(dQuote(names(x)), els, sep = ": ", collapse = sprintf(",%s", collapse)),
+                      paste(dQuote(escapeQuote(names(x))), els, sep = ": ", collapse = sprintf(",%s", collapse)),
                       sprintf("%s}", collapse))
              else
                  paste(sprintf("[%s", collapse), paste(els, collapse = sprintf(",%s", collapse)), sprintf("%s]", collapse))
@@ -326,7 +330,7 @@ function(txt)
 {
    txt = paste(as.character(txt), collapse = "\n")
    enc = mapEncoding(Encoding(txt))
-   .Call("R_jsonPrettyPrint", txt, enc, package = "RJSONIO")
+   .Call("R_jsonPrettyPrint", txt, enc, PACKAGE = "RJSONIO")
 }
 
 
