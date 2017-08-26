@@ -2,6 +2,8 @@
 \alias{toJSON}
 \alias{toJSON,list-method}
 \alias{toJSON,ANY-method}
+\alias{toJSON,array-method}
+\alias{toJSON,function-method}
 \alias{toJSON,numeric-method}
 \alias{toJSON,integer-method}
 \alias{toJSON,integer,missing-method}
@@ -11,7 +13,7 @@
 \alias{toJSON,matrix-method}
 \alias{toJSON,ANY-method}
 \alias{toJSON,name-method}
-\alias{toJSON,list-method}
+\alias{toJSON,data.frame-method}
 \alias{toJSON,NULL-method}
 \alias{toJSON,factor-method}
 \alias{toJSON,AsIs-method}
