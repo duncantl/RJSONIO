@@ -99,7 +99,7 @@ setMethod("toJSON", "integer",
                        .escapeEscapes = TRUE, pretty = FALSE, asIs = NA, .inf = " Infinity")
           {
             if(any(is.infinite(x)))
-              warning("non-fininte values in integer vector may not be approriately represented in JSON")
+              warning("non-finite values in integer vector may not be approriately represented in JSON")
             
              if(any(nas <- is.na(x)))
                  x[nas] = .na
@@ -168,7 +168,7 @@ setMethod("toJSON", "numeric",
 
 cat("toJSON::numeric", digits, "\n")               
             if(any(is.infinite(x)))
-              warning("non-fininte values in numeric vector may not be approriately represented in JSON")             
+              warning("non-finite values in numeric vector may not be approriately represented in JSON")             
 
              tmp = formatC(x, digits = digits) # , format = "f")
               
