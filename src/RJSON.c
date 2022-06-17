@@ -1,9 +1,13 @@
+#if 0
+static int foo;
+#else
 #include "JSON_parser.h"
 
 #include <Rinternals.h>
 #include <Rdefines.h>
 
 #include "ConvertUTF.h"
+#include "Rlibjson.h"
 
 #include <stdlib.h>
 
@@ -360,3 +364,4 @@ R_json_LogicalArrayCallback(void* ctx, int type, const struct JSON_value_struct*
 
     return(1);
 }
+#endif
