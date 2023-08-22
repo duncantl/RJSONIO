@@ -166,7 +166,7 @@ setMethod("toJSON", "numeric",
                         .na = "null", .escapeEscapes = TRUE, pretty = FALSE, asIs = NA,
                          .inf = " Infinity") {
 
-cat("toJSON::numeric", digits, "\n")               
+
             if(any(is.infinite(x)))
               warning("non-finite values in numeric vector may not be approriately represented in JSON")             
 
