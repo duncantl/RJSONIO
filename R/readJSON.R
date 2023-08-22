@@ -166,47 +166,6 @@ function(content, handler = NULL, default.size = 100,
 })
 
 
-if(FALSE) 
-setMethod("fromJSON", "connection",
-    # This will be changed so that the code that passes content to the JSON parser
-    # calls   readLines(, n = numLines) on the connection
-function(content, handler = NULL, default.size = 100,
-         depth = 150L, allowComments = TRUE, asText = isContent(content),
-            data = NULL, maxNumLines = -1L, ...)  
-{
-  handlerFun = inherits(handler, "JSONParserHandler")
-  if(handlerFun) {
-    fun = handler$update
-  } else
-    fun = handler
-
-  if(inherits(handler, "NativeSymbolInfo"))
-    handler = handler$address
-
-  if(inherits(handler, "NativeSymbol")) {
-     data = list(handler, data)
-     fun = NULL
-   }
-  
-  if(!isOpen(content)) {
-     open(content, "r")
-     on.exit(close(content))
-  }
-
-  ans = .Call("R_readFromJSON", content, as.integer(depth), as.logical(allowComments),
-                                 fun, data, as.integer(maxNumLines))
-
-  if(inherits(handler, "NativeSymbol"))
-    data[[2]]
-  else if(handlerFun) {
-    handler$value()
-  } else
-    ans
-
-  
-#  fromJSON(content, handler, depth, allowComments, asText = TRUE, data, ...) 
-#   fromJSON(paste(readLines(content), collapse = "\n"), handler, depth, allowComments, asText = TRUE, data, ...)
-})
 
 
 # Constants that identify the different elements/tokens.
