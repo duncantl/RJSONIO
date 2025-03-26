@@ -43,8 +43,8 @@ R_fromJSON(SEXP r_str, SEXP simplify, SEXP nullValue, SEXP simplifyWithNames, SE
     } else 
 	r_stringFun = NULL;
 
-#if 0
-    register_debug_callback(jsonErrorHandler);
+#if 1
+    json_register_debug_callback(jsonErrorHandler);
 #else
 #pragma message("activate the debug_callback")
 #endif
